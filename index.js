@@ -25,6 +25,7 @@ class Sprite {
       width: 100,
       height: 50,
     };
+    this.health = 100;
     this.isAttacking = false;
   }
 
@@ -155,13 +156,15 @@ function animate() {
   // detect for collision
   if (rectangularCollision(player, ennemy) && player.isAttacking) {
     player.isAttacking = false;
-    console.log("player touch");
+    ennemy.health -= 20;
+    document.querySelector("#ennemyHealth").style.width = ennemy.health + "%";
   }
 
   // detect for collision
   if (rectangularCollision(ennemy, player) && ennemy.isAttacking) {
     ennemy.isAttacking = false;
-    console.log("ennemy touch");
+    player.health -= 20;
+    document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 }
 
