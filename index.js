@@ -35,11 +35,10 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  offset: {
-    x: 0,
-    y: 0,
-  },
-  color: "yellow",
+  imageSrc: "./img/samuraiMack/Idle.png",
+  framesMax: 8,
+  scale: 2.5,
+  offset: { x: 215, y: 160 },
 });
 
 const ennemy = new Fighter({
@@ -51,10 +50,10 @@ const ennemy = new Fighter({
     x: 0,
     y: 0,
   },
-  offset: {
-    x: 50,
-    y: 0,
-  },
+  imageSrc: "./img/kenji/Idle.png",
+  framesMax: 8,
+  scale: 2.5,
+  offset: { x: 215, y: 160 },
 });
 
 const keys = {
@@ -84,7 +83,7 @@ function animate() {
   shop.update();
   // Fighter
   player.update();
-  ennemy.update();
+  // ennemy.update();
 
   player.velocity.x = 0;
   ennemy.velocity.x = 0;
