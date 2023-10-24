@@ -48,13 +48,19 @@
         </div>
         <!-- Timer -->
         <div
+          id="timer"
           style="
             background-color: red;
             height: 100px;
             width: 100px;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           "
-        ></div>
+        >
+          10
+        </div>
         <!-- Ennemy Health -->
         <div style="position: relative; height: 30px; width: 100%">
           <div style="background-color: magenta; height: 30px"></div>
@@ -71,6 +77,20 @@
           ></div>
         </div>
       </header>
+      <div
+        id="displayText"
+        style="
+          position: absolute;
+          color: white;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        "
+      ></div>
       <canvas></canvas>
     </div>
     <script src="index.js"></script>
