@@ -28,7 +28,7 @@ const shop = new Sprite({
 
 const player = new Fighter({
   position: {
-    x: 0,
+    x: 25,
     y: 0,
   },
   velocity: {
@@ -69,7 +69,7 @@ const player = new Fighter({
 
 const ennemy = new Fighter({
   position: {
-    x: 400,
+    x: 950,
     y: 100,
   },
   velocity: {
@@ -77,9 +77,35 @@ const ennemy = new Fighter({
     y: 0,
   },
   imageSrc: "./img/kenji/Idle.png",
-  framesMax: 8,
+  framesMax: 4,
   scale: 2.5,
-  offset: { x: 215, y: 160 },
+  offset: { x: 215, y: 167 },
+  sprites: {
+    idle: {
+      imageSrc: "./img/kenji/Idle.png",
+      framesMax: 4,
+    },
+    run: {
+      imageSrc: "./img/kenji/Run.png",
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: "./img/kenji/Jump.png",
+      framesMax: 2,
+    },
+    fall: {
+      imageSrc: "./img/kenji/Fall.png",
+      framesMax: 2,
+    },
+    death: {
+      imageSrc: "./img/kenji/Death.png",
+      framesMax: 8,
+    },
+    attack1: {
+      imageSrc: "./img/kenji/Attack1.png",
+      framesMax: 4,
+    },
+  },
 });
 
 const keys = {
@@ -109,7 +135,7 @@ function animate() {
   shop.update();
   // Fighter
   player.update();
-  // ennemy.update();
+  ennemy.update();
 
   player.velocity.x = 0;
   ennemy.velocity.x = 0;
@@ -134,8 +160,18 @@ function animate() {
   // ennemy movement
   if (keys.ArrowLeft.pressed && ennemy.lastKey === "ArrowLeft") {
     ennemy.velocity.x = -5;
+    ennemy.switchSprite("run");
   } else if (keys.ArrowRight.pressed && ennemy.lastKey === "ArrowRight") {
     ennemy.velocity.x = 5;
+    ennemy.switchSprite("run");
+  } else {
+    ennemy.switchSprite("idle");
+  }
+
+  if (ennemy.velocity.y < 0) {
+    ennemy.switchSprite("jump");
+  } else if (ennemy.velocity.y > 0) {
+    ennemy.switchSprite("fall");
   }
 
   // detect for collision
